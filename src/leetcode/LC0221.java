@@ -1,6 +1,6 @@
 package leetcode;
 
-public class LC221 {
+public class LC0221 {
 
     public int maximalSquare(char[][] matrix) {
         int row = matrix.length;

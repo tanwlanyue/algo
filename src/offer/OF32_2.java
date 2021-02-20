@@ -2,33 +2,38 @@ package offer;
 
 import util.TreeNode;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 92.67%
+ * 81.11%
+ */
 public class OF32_2 {
+
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> res=new ArrayList<>();
+        ArrayList<List<Integer>> ret = new ArrayList<>();
         if(root==null){
-            return res;
+            return ret;
         }
-        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()){
-            int size = queue.size();
-            List<Integer> list = new ArrayList<>();
-            res.add(list);
+            int size=queue.size();
+            ArrayList<Integer> list = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode pop = queue.poll();
-                list.add(pop.val);
-                if(pop.left!=null){
-                    queue.offer(pop.left);
+                TreeNode node = queue.poll();
+                list.add(node.val);
+                if(node.left!=null){
+                    queue.offer(node.left);
                 }
-                if(pop.right!=null){
-                    queue.offer(pop.right);
+                if(node.right!=null){
+                    queue.offer(node.right);
                 }
             }
+            ret.add(list);
         }
-        return res;
+        return ret;
     }
 }

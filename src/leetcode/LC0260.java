@@ -1,6 +1,6 @@
 package leetcode;
 
-public class LC260 {
+public class LC0260 {
 
     public int[] singleNumber(int[] nums) {
         int[] res = new int[2];

@@ -2,14 +2,19 @@ package leetcode;
 
 import util.ListNode;
 
+/**
+ * 100%
+ * 98.64%
+ */
 public class LC0328 {
     public ListNode oddEvenList(ListNode head) {
-        if(head==null){
-            return null;
+        if(head==null||head.next==null){
+            return head;
         }
-        ListNode odd=head;
-        ListNode even=head.next;
-        ListNode evenHead=even;
+        ListNode oddHead=head;
+        ListNode evenHead=head.next;
+        ListNode odd=oddHead;
+        ListNode even=evenHead;
         while (even!=null&&even.next!=null){
             odd.next=odd.next.next;
             odd=odd.next;
@@ -17,6 +22,6 @@ public class LC0328 {
             even=even.next;
         }
         odd.next=evenHead;
-        return head;
+        return oddHead;
     }
 }

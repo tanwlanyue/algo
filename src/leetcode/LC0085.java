@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.ArrayDeque;
 
-public class LC0088 {
+public class LC0085 {
 
     public int maximalRectangle(char[][] matrix) {
         if(matrix.length==0||matrix[0].length==0){

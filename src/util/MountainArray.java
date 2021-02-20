@@ -1,4 +1,6 @@
 package util;
 
-public class MountainArray {
+public interface MountainArray {
+    int get(int index);
+    int length();
 }

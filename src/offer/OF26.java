@@ -2,24 +2,28 @@ package offer;
 
 import util.TreeNode;
 
+/**
+ * 剑指 Offer 26. 树的子结构
+ */
 public class OF26 {
+
     public boolean isSubStructure(TreeNode A, TreeNode B) {
         if(A==null||B==null){
             return false;
         }
-        return isSubStructureWithRoot(A,B)||isSubStructure(A.left,B)||isSubStructure(A.right,B);
+        return recur(A,B)||isSubStructure(A.left,B)||isSubStructure(A.right,B);
     }
 
-    public boolean isSubStructureWithRoot(TreeNode A, TreeNode B) {
-        if(B==null){
+    private boolean recur(TreeNode a, TreeNode b) {
+        if(b==null){
             return true;
         }
-        if(A==null){
+        if(a==null){
             return false;
         }
-        if(A.val!=B.val){
+        if(a.val!=b.val){
             return false;
         }
-        return isSubStructureWithRoot(A.left,B.left) && isSubStructureWithRoot(A.right,B.right);
+        return recur(a.left,b.left)&&recur(a.right,b.right);
     }
 }

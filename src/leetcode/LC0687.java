@@ -2,7 +2,7 @@ package leetcode;
 
 import util.TreeNode;
 
-public class LC687 {
+public class LC0687 {
 
     int maxLen=0;
     public int longestUnivaluePath(TreeNode root) {

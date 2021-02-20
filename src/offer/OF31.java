@@ -1,23 +1,18 @@
 package offer;
 
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 
 public class OF31 {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        LinkedList<Integer> stack = new LinkedList<>();
         int i=0,j=0;
-        int length = pushed.length;
-        while (i<length){
+        while (i<pushed.length&&i<popped.length){
             stack.push(pushed[i++]);
-            while (!stack.isEmpty()&&j<length){
-                if(stack.peek()==popped[j]){
-                    stack.pop();
-                    j++;
-                }else {
-                    break;
-                }
+            while (!stack.isEmpty()&&popped[j]==stack.peek()) {
+                stack.pop();
+                j++;
             }
         }
-        return j==length;
+        return stack.isEmpty();
     }
 }

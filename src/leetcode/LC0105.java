@@ -2,7 +2,7 @@ package leetcode;
 
 import util.TreeNode;
 
-public class LC105 {
+public class LC0105 {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         int left=0,right=preorder.length-1;

@@ -2,40 +2,36 @@ package leetcode;
 
 
 /**
- * FIXME
+ * 中心扩展 Manacher 动态规划
  */
 public class LC0005 {
 
     public String longestPalindrome(String s) {
-        int len = s.length();
-        if(len<=1){
-            return s;
-        }
-        int maxLen=1;
-        int beginIndex=0;
-        boolean[][] dp = new boolean[len][len];
-        char[] charArray = s.toCharArray();
-        for (int i = 0; i < len; i++) {
-            dp[i][i] = true;
-        }
-        for (int j = 1; j < len; j++) {
-            for (int i = 0; i < j; i++) {
-                if(charArray[i]!=charArray[j]){
-                    dp[i][j]=false;
-                }else {
-                    if(j-i<3){
-                        dp[i][j]=true;
-                    }else {
-                        dp[i][j]=dp[i+1][j-1];
-                    }
-                }
-                if(dp[i][j]&&j-i+1>maxLen){
-                    maxLen=j-i+1;
-                    beginIndex=i;
-                }
-
+        int maxLen=0;
+        String ret="";
+        int length = s.length();
+        for (int i = 0; i < length; i++) {
+            String oddStr = getStr(s, i, i);
+            String evenStr = getStr(s, i, i + 1);
+            String maxLenStr = oddStr.length() > evenStr.length() ? oddStr : evenStr;
+            if (maxLenStr.length() > maxLen) {
+                maxLen = maxLenStr.length();
+                ret = maxLenStr;
             }
         }
-        return s.substring(beginIndex,beginIndex+maxLen);
+        return ret;
+    }
+
+    private String getStr(String s, int left, int right) {
+        int count=0;
+        while (left>=0&&right<s.length()){
+            if(s.charAt(left)==s.charAt(right)){
+                left--;
+                right++;
+            }else {
+                break;
+            }
+        }
+        return s.substring(left+1,right);
     }
 }

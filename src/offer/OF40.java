@@ -4,18 +4,14 @@ import java.util.PriorityQueue;
 
 public class OF40 {
     public int[] getLeastNumbers(int[] arr, int k) {
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
         for (int i : arr) {
-            minHeap.offer(i);
-            if(minHeap.size()>k){
-                minHeap.poll();
-            }
+            heap.add(i);
         }
-        int[] res = new int[k];
-        int j=0;
-        while (j<k){
-            res[j++]=minHeap.poll();
+        int[] ints = new int[k];
+        for (int i = 0; i < ints.length; i++) {
+            ints[i]=heap.poll();
         }
-        return res;
+        return ints;
     }
 }

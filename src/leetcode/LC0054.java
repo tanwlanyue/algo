@@ -4,34 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LC0054 {
+
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res = new ArrayList<>();
-        if (matrix.length == 0 || matrix[0].length == 0) {
-            return res;
+        ArrayList<Integer> list = new ArrayList<>();
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int left = 0, right = col - 1, top = 0, bottom = row - 1;
+        int rel = row * col;
+        while (rel >= 1) {
+            for (int i = left; i <= right && rel >= 1; i++) {
+                list.add(matrix[top][i]);
+                rel--;
+            }
+            top++;
+            for (int i = top; i <= bottom && rel >= 1; i++) {
+                list.add(matrix[i][right]);
+                rel--;
+            }
+            right--;
+            for (int i = right; i >= left && rel >= 1; i--) {
+                list.add(matrix[bottom][i]);
+                rel--;
+            }
+            bottom--;
+            for (int i = bottom; i >= top && rel >= 1; i--) {
+                list.add(matrix[i][left]);
+                rel--;
+            }
+            left++;
         }
-        int r1 = 0, r2 = matrix.length-1, c1 = 0, c2 = matrix[0].length-1;
-        while (r1 <= r2 && c1 <= c2) {
-            for (int i = c1; i <= c2; i++) {
-                res.add(matrix[r1][i]);
-            }
-            for (int i = r1 + 1; i <= r2; i++) {
-                res.add(matrix[i][c2]);
-            }
-            if (r1 != r2) {
-                for (int i = c2 - 1; i >= c1; i--) {
-                    res.add(matrix[r2][i]);
-                }
-            }
-            if (c1 != c2) {
-                for (int i = r2 - 1; i >r1; i--) {
-                    res.add(matrix[i][c1]);
-                }
-            }
-            r1++;
-            r2--;
-            c1++;
-            c2--;
-        }
-        return res;
+        return list;
     }
 }

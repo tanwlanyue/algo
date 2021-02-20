@@ -2,39 +2,41 @@ package offer;
 
 import util.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
+/**
+ * 99.76%
+ * 42.05%
+ */
 public class OF32_3 {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> res=new ArrayList<>();
+        ArrayList<List<Integer>> ret = new ArrayList<>();
         if(root==null){
-            return res;
+            return ret;
         }
-        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        int level=0;
+        int line=0;
         while (!queue.isEmpty()){
-            int size = queue.size();
-            List<Integer> list = new ArrayList<>();
+            int size=queue.size();
+            LinkedList<Integer> list = new LinkedList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode pop = queue.poll();
-                list.add(pop.val);
-                if(pop.left!=null){
-                    queue.offer(pop.left);
+                TreeNode node = queue.poll();
+                if(line%2==0){
+                    list.add(node.val);
+                }else {
+                    list.addFirst(node.val);
                 }
-                if(pop.right!=null){
-                    queue.offer(pop.right);
+                if(node.left!=null){
+                    queue.offer(node.left);
+                }
+                if(node.right!=null){
+                    queue.offer(node.right);
                 }
             }
-            level++;
-            if(level%2==0){
-                Collections.reverse(list);
-            }
-            res.add(list);
+            ret.add(list);
+            line++;
         }
-        return res;
+        return ret;
     }
 }
